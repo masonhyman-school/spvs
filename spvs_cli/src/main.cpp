@@ -13,8 +13,7 @@ void print_usage() {
 }
 
 static bool port_is_open(const string& address, int port) {
-	sf::IpAddress addr(127, 0, 0, 1);
-	return (sf::TcpSocket().connect(addr, port) == sf::Socket::Status::Done);
+	return (sf::TcpSocket().connect(sf::IpAddress::resolve(address).value(), port) == sf::Socket::Status::Done);
 }
 
 void port_scan(const string& address, int ports) {
@@ -25,6 +24,7 @@ void port_scan(const string& address, int ports) {
 		if (port_is_open(address, i)) {
 			host_online = true;
 			open_ports.at(i) = true;
+			cout << "PORT " << i << " IS OPEN\n";
 		} 	
 	}
 
