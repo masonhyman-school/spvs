@@ -5,8 +5,8 @@ INCLUDES = -I SFML/include
 LIBS = -L SFML/build/lib -lsfml-network
 LINKER = -Wl,-rpath,./SFML/build/lib
 
-bin/spvs: $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o bin/spvs $(INCLUDES) $(LIBS) $(LINKER)
+bin/spvs: src/simple_scanner.cpp
+	$(CC) $(CFLAGS) src/simple_scanner.cpp -o bin/spvs $(INCLUDES) $(LIBS) $(LINKER)
 
 clean:
 	rm bin/*

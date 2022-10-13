@@ -17,7 +17,7 @@ void scan(const string& address, vector<int>ports)
     //Scanning each port and seeing whether it is open or closed
     for(int i=0; i<ports.size(); i++)
     {
-        cout << "Scanning " << address << "...\n" << "Port " << i << " : " << endl;
+        cout << "Scanning " << address << "...\n" << "Port " << ports[i] << " : " << endl;
         if (port_is_open(address, i))
         {
             cout << "OPEN" << endl;
@@ -33,40 +33,26 @@ void scan(const string& address, vector<int>ports)
 int main(int argc, char ** argv)
 {
     vector<int> ports;
-    ifstream my_file;
-    string address;
     int port;
-    string s;
-    stringstream ss;
+    string address;
 
-    if(argc!=2)
+    //Address that is used for scanning
+    cout << "Please enter address: ";
+    getline(cin,address);
+    cout << endl;
+
+    cout << "Please enter the ports that you would like to be scanned: " << endl;
+    //Getting all the ports that you want to scan
+    while(true)
     {
-        cerr << "Incorrect number of arguments" << endl;
-    }
-
-    else
-    {
-        my_file.open(argv[1]);
-        if(my_file.fail())
+        if(!(cin >> port))
         {
-            cerr << "Could not open file" << endl;
+            break;
         }
-
-        //Getting the address
-        cout << "Enter Address: ";
-        getline(cin, address);
-        cout << endl;
-
-        /* Getting all the ports and then scanning each one with associated address */
-        while(getline(my_file,s))
-        {
-            ss.clear();
-            ss<<s;
-            ss>>port;
-            ports.push_back(port);
-        }
-
-        scan(address,ports);
+        ports.push_back(port);
     }
+    
+    scan(address,ports);
+
     return 0;
 }
