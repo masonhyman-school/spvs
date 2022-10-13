@@ -2,6 +2,7 @@
 #include <fstream>
 #include <list>
 #include <vector>
+#include <thread>
 #include <SFML/Network.hpp>
 
 using namespace std;
@@ -13,11 +14,20 @@ void print_usage() {
 }
 
 static bool port_is_open(const string& address, int port) {
-	return (sf::TcpSocket().connect(sf::IpAddress::resolve(address).value(), port) == sf::Socket::Status::Done);
+	return (sf::TcpSocket().connect(sf::IpAddress::resolve(address).value(), port, sf::milliseconds(100)) == sf::Socket::Status::Done);
+}
+
+void threaded_port_is_open(const string& address, int port, vector<bool>& status) {
+	cout << address << endl;	
+	if(sf::TcpSocket().connect(sf::IpAddress::resolve(address).value(), port) == sf::Socket::Status::Done) {
+		status.at(port) = 1;
+	}
 }
 
 void port_scan(const string& address, int ports) {
 	vector <bool> open_ports(ports+1, false);
+	vector <thread *> threads;
+
 	bool host_online = false;
 	
 	for (int i = 1; i <= ports; i++) {
@@ -27,6 +37,19 @@ void port_scan(const string& address, int ports) {
 			cout << "PORT " << i << " IS OPEN\n";
 		} 	
 	}
+
+//	for (int i = 1; i <= ports; i++) threads.push_back(new thread(threaded_port_is_open, ref(address), i, ref(open_ports)));
+//	for (int i = 1; i <= ports; i++) {
+//		threads[i]->join();
+//		delete threads[i];
+//	}
+
+//	for (int i = 1; i < open_ports.size(); i++) {
+//		if (open_ports[i]) {
+//			host_online = true;
+//			break;
+//		}
+//	}
 
 	if (host_online) {
 		cout << address << " is ONLINE with open ports: " << endl;
