@@ -32,9 +32,9 @@ void port_scan(const string& address, int ports) {
 	
 	for (int i = 1; i <= ports; i++) {
 		if (port_is_open(address, i)) {
+			cout << "Found port " << i << " is OPEN" << endl;
 			host_online = true;
 			open_ports.at(i) = true;
-			cout << "PORT " << i << " IS OPEN\n";
 		} 	
 	}
 
@@ -52,10 +52,14 @@ void port_scan(const string& address, int ports) {
 //	}
 
 	if (host_online) {
+		cout << endl << "Scan Complete: " << endl;
 		cout << address << " is ONLINE with open ports: " << endl;
 		for (int i = 1; i < open_ports.size(); i++) {
 			if (open_ports.at(i)) 
 				cout << "   Port " << i << " is open" << endl;
+				if (i == 1947) cout << "      Port likely running SENTINELSRM" << endl;
+				if (i == 5000) cout << "      Port likely running UPNP" << endl;
+				if (i == 7000) cout << "      Port likely running AfS3-FILESERVER" << endl;
 		}
 	} else {
 		cout << address << " is OFFLINE." << endl;
