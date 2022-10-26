@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -std=c++17
 SRC = src/main.cpp
-INCLUDES = -I SFML/include
+INCLUDES = -I SFML/include -I include
 LIBS = -L SFML/build/lib -lsfml-network
 LINKER = -Wl,-rpath,./SFML/build/lib
 
