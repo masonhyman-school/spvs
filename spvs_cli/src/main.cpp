@@ -12,7 +12,7 @@ using namespace std;
 std::mutex m;
 
 int main(int argc, char** argv) {
-	Target t;
+/*	Target t;
 	if (t.ICMP_Host_Online(argv[1])) cout << "Host is online" << endl;
 	else cout << "Something wrong" << endl;
 
@@ -23,14 +23,78 @@ int main(int argc, char** argv) {
 	t.TCP_Scan_Ports(argv[1], ports);
 	
 	t.TCP_Print_Open_Ports();
+*/
+
+	Input input(argc, argv);
+	if (input.Arg_Exists("-f")) cout << "Found" << endl;
+
+	cout << input.Get_Next_Arg("-f") << endl;
+
 	return 0;
 }
 
 
 
 
-
 /* DEFINITIONS FOR spvs.h */
+
+/* GENERAL PURPOSE */
+
+/*
+ *	@name Print_Usage
+ *	@brief Prints spvs usage.
+ */
+void Print_Usage() {	
+	cerr <<  "Usage: spvs [Options] {target specification}" << endl
+		 << "TARGET SPECIFICATION:" << endl
+		 << "    -f <input file name>: Input from list of hosts." << endl;
+}
+
+/* INPUT CLASS */
+
+/*
+ *	@name Input
+ *  @brief Constructor for the Input class, adds argv to args vector in class instance.
+ *  @param[in] argc - number of arguments
+ *  @param[in] argv - array of command line arguments.
+ *  @return Input class instance.
+ */
+Input::Input(int &argc, char ** argv) {
+	for (int i = 1; i < argc; i++) {
+		this->args.push_back(string(argv[i]));
+	}
+}
+/*
+ *	@name Arg_Exists
+ *	@brief Checks if supplied argument exists in user's input
+ *	@param[in] option - supplied argument to find
+ *  @return true if arg was found
+ */
+bool Input::Arg_Exists(const string& option) const {
+	return find(args.begin(), args.end(), option) != args.end();
+}
+
+/*
+ *	@name Get_Next_Arg
+ *	@brief return argument following supplied option
+ *	@param[in] option
+ *  @return the desired argument, empty string if none exists
+ */
+const string& Input::Get_Next_Arg(const string& option) const {
+	vector<string>::const_iterator vit;
+
+	/* Find the supplied argument and then return the following argument */
+	vit = find(args.begin(), args.end(), option);
+	
+	if (vit != args.end() && ++vit != args.end()) {
+		return *vit;
+	} 
+
+	static const string empty = "";	
+	return empty;
+}
+
+/* TARGET CLASS */
 
 /*
  *	@name Host_Online

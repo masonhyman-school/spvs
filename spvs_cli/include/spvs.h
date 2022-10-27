@@ -1,6 +1,23 @@
 #ifndef SPVS_HEADER_FILE_H
 #define SPVS_HEADER_FILE_H
 
+/* General Purpose Functions */
+void Print_Usage();
+
+
+/* Input Parser */
+class Input
+{
+	public:
+		Input (int &argc, char ** argv);
+
+		bool Arg_Exists(const std::string &option) const;
+		const std::string& Get_Next_Arg(const std::string & option) const;
+	private:
+		std::vector<std::string> args;
+};
+
+/* Defines information for single target. */
 class Target
 {
 	public:
