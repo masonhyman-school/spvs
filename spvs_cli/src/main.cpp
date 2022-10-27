@@ -25,6 +25,11 @@ int main(int argc, char** argv) {
 	t.TCP_Print_Open_Ports();
 */
 
+	if (argc == 1) {
+		Print_Usage();
+		exit(1);
+	}
+
 	Input input(argc, argv);
 	if (input.Arg_Exists("-f")) cout << "Found" << endl;
 
