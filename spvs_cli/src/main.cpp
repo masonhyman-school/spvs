@@ -75,15 +75,23 @@ void Target::TCP_Port_Is_Open(const string& address, const int port) {
  */
 void Target::TCP_Scan_Ports(const string& address, const vector<int>& ports) {
 	vector <thread *> scanning_tasks;
-	
-	for (int i = 0; i < ports.size(); i++) {
-		scanning_tasks.push_back(new thread(&Target::TCP_Port_Is_Open, this, address, ports[i]));
-	}
-	
-	for (int i = 0; i < scanning_tasks.size(); i++) {
-		scanning_tasks[i]->join();
-		delete scanning_tasks[i];
-	}
+
+		/* For all ports in ports vector, scan that port */	
+		for (int i = 0; i < ports.size(); i++) {
+			/* Push port scan to thread */
+			scanning_tasks.push_back(new thread(&Target::TCP_Port_Is_Open, this, address, ports[i]));
+			
+			/* Only create 50 threads at a time as to avoid maxing out threads */
+			if (i % 50 == 0 && i != 0) {
+				
+				for (int j = 0; j < scanning_tasks.size(); j++) {
+					scanning_tasks[j]->join();
+					delete scanning_tasks[j];
+				}
+				
+				scanning_tasks.clear();
+			}
+		}
 }
 
 /*
