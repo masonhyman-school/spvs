@@ -7,7 +7,7 @@ if(CMAKE_VERSION VERSION_LESS "2.8.3")
    message(FATAL_ERROR "CMake >= 2.8.3 required")
 endif()
 cmake_policy(PUSH)
-cmake_policy(VERSION 2.8.3...3.22)
+cmake_policy(VERSION 2.8.3...3.23)
 #----------------------------------------------------------------
 # Generated CMake target import file.
 #----------------------------------------------------------------
@@ -55,7 +55,7 @@ add_library(SFML::System SHARED IMPORTED)
 
 set_target_properties(SFML::System PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/include"
 )
 
 # Create imported target SFML::Window
@@ -63,7 +63,7 @@ add_library(SFML::Window SHARED IMPORTED)
 
 set_target_properties(SFML::Window PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/include"
   INTERFACE_LINK_LIBRARIES "SFML::System"
 )
 
@@ -71,8 +71,8 @@ set_target_properties(SFML::Window PROPERTIES
 add_library(OpenGL INTERFACE IMPORTED)
 
 set_target_properties(OpenGL PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/OpenGL.framework"
-  INTERFACE_LINK_LIBRARIES "/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/OpenGL.framework"
+  INTERFACE_INCLUDE_DIRECTORIES "/Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/OpenGL.framework"
+  INTERFACE_LINK_LIBRARIES "/Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/OpenGL.framework"
 )
 
 # Create imported target SFML::Network
@@ -80,7 +80,7 @@ add_library(SFML::Network SHARED IMPORTED)
 
 set_target_properties(SFML::Network PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/include"
   INTERFACE_LINK_LIBRARIES "SFML::System"
 )
 
@@ -89,7 +89,7 @@ add_library(SFML::Graphics SHARED IMPORTED)
 
 set_target_properties(SFML::Graphics PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/include"
   INTERFACE_LINK_LIBRARIES "SFML::Window"
 )
 
@@ -97,16 +97,16 @@ set_target_properties(SFML::Graphics PROPERTIES
 add_library(Freetype INTERFACE IMPORTED)
 
 set_target_properties(Freetype PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/headers/freetype2"
-  INTERFACE_LINK_LIBRARIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/freetype.framework"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/headers/freetype2"
+  INTERFACE_LINK_LIBRARIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/freetype.framework"
 )
 
 # Create imported target OpenAL
 add_library(OpenAL INTERFACE IMPORTED)
 
 set_target_properties(OpenAL PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/OpenAL.framework/Headers"
-  INTERFACE_LINK_LIBRARIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/OpenAL.framework"
+  INTERFACE_INCLUDE_DIRECTORIES "/Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/OpenAL.framework/Headers"
+  INTERFACE_LINK_LIBRARIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/OpenAL.framework"
 )
 
 # Create imported target VORBIS
@@ -114,8 +114,8 @@ add_library(VORBIS INTERFACE IMPORTED)
 
 set_target_properties(VORBIS PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OV_EXCLUDE_STATIC_CALLBACKS"
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/headers;/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/headers"
-  INTERFACE_LINK_LIBRARIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbisenc.framework;/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbisfile.framework;/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbis.framework;/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/ogg.framework"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/headers;/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/headers"
+  INTERFACE_LINK_LIBRARIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbisenc.framework;/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbisfile.framework;/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbis.framework;/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/ogg.framework"
 )
 
 # Create imported target FLAC
@@ -123,8 +123,8 @@ add_library(FLAC INTERFACE IMPORTED)
 
 set_target_properties(FLAC PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "FLAC__NO_DLL"
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/headers"
-  INTERFACE_LINK_LIBRARIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/FLAC.framework"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/headers"
+  INTERFACE_LINK_LIBRARIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/FLAC.framework"
 )
 
 # Create imported target SFML::Audio
@@ -132,42 +132,42 @@ add_library(SFML::Audio SHARED IMPORTED)
 
 set_target_properties(SFML::Audio PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
-  INTERFACE_INCLUDE_DIRECTORIES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/include"
   INTERFACE_LINK_LIBRARIES "SFML::System"
 )
 
 # Import target "SFML::System" for configuration "Release"
 set_property(TARGET SFML::System APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(SFML::System PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib/libsfml-system.3.0.0.dylib"
+  IMPORTED_LOCATION_RELEASE "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib/libsfml-system.3.0.0.dylib"
   IMPORTED_SONAME_RELEASE "@rpath/libsfml-system.3.0.dylib"
   )
 
 # Import target "SFML::Window" for configuration "Release"
 set_property(TARGET SFML::Window APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(SFML::Window PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib/libsfml-window.3.0.0.dylib"
+  IMPORTED_LOCATION_RELEASE "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib/libsfml-window.3.0.0.dylib"
   IMPORTED_SONAME_RELEASE "@rpath/libsfml-window.3.0.dylib"
   )
 
 # Import target "SFML::Network" for configuration "Release"
 set_property(TARGET SFML::Network APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(SFML::Network PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib/libsfml-network.3.0.0.dylib"
+  IMPORTED_LOCATION_RELEASE "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib/libsfml-network.3.0.0.dylib"
   IMPORTED_SONAME_RELEASE "@rpath/libsfml-network.3.0.dylib"
   )
 
 # Import target "SFML::Graphics" for configuration "Release"
 set_property(TARGET SFML::Graphics APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(SFML::Graphics PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib/libsfml-graphics.3.0.0.dylib"
+  IMPORTED_LOCATION_RELEASE "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib/libsfml-graphics.3.0.0.dylib"
   IMPORTED_SONAME_RELEASE "@rpath/libsfml-graphics.3.0.dylib"
   )
 
 # Import target "SFML::Audio" for configuration "Release"
 set_property(TARGET SFML::Audio APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(SFML::Audio PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib/libsfml-audio.3.0.0.dylib"
+  IMPORTED_LOCATION_RELEASE "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib/libsfml-audio.3.0.0.dylib"
   IMPORTED_SONAME_RELEASE "@rpath/libsfml-audio.3.0.dylib"
   )
 

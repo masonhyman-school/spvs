@@ -1,4 +1,4 @@
-# Install script for directory: /Users/mason/School/cs340/spvs/spvs_cli/SFML
+# Install script for directory: /Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,54 +39,54 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/src/SFML/cmake_install.cmake")
+  include("/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/src/SFML/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "devel" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/include/" FILES_MATCHING REGEX "/[^/]*\\.hpp$" REGEX "/[^/]*\\.inl$")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/include/" FILES_MATCHING REGEX "/[^/]*\\.hpp$" REGEX "/[^/]*\\.inl$")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/SFML" TYPE FILE FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/license.md")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/SFML" TYPE FILE FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/license.md")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/SFML" TYPE FILE FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/readme.md")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/SFML" TYPE FILE FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/readme.md")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/freetype.framework")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/freetype.framework")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/FLAC.framework")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/FLAC.framework")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/ogg.framework")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/ogg.framework")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbis.framework")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbis.framework")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbisenc.framework")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbisenc.framework")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbisfile.framework")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/vorbisfile.framework")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/extlibs/libs-osx/Frameworks/OpenAL.framework")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE DIRECTORY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/extlibs/libs-osx/Frameworks/OpenAL.framework")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML/SFMLSharedTargets.cmake")
     file(DIFFERENT _cmake_export_file_changed FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML/SFMLSharedTargets.cmake"
-         "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/CMakeFiles/Export/3937c6824958577f216dad0a66bc6149/SFMLSharedTargets.cmake")
+         "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/CMakeFiles/Export/3937c6824958577f216dad0a66bc6149/SFMLSharedTargets.cmake")
     if(_cmake_export_file_changed)
       file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML/SFMLSharedTargets-*.cmake")
       if(_cmake_old_config_files)
@@ -99,17 +99,17 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
     unset(_cmake_export_file_changed)
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML" TYPE FILE FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/CMakeFiles/Export/3937c6824958577f216dad0a66bc6149/SFMLSharedTargets.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML" TYPE FILE FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/CMakeFiles/Export/3937c6824958577f216dad0a66bc6149/SFMLSharedTargets.cmake")
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML" TYPE FILE FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/CMakeFiles/Export/3937c6824958577f216dad0a66bc6149/SFMLSharedTargets-release.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML" TYPE FILE FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/CMakeFiles/Export/3937c6824958577f216dad0a66bc6149/SFMLSharedTargets-release.cmake")
   endif()
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "devel" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SFML" TYPE FILE FILES
-    "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/SFMLConfig.cmake"
-    "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/SFMLConfigDependencies.cmake"
-    "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/SFMLConfigVersion.cmake"
+    "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/SFMLConfig.cmake"
+    "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/SFMLConfigDependencies.cmake"
+    "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/SFMLConfigVersion.cmake"
     )
 endif()
 
@@ -121,5 +121,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

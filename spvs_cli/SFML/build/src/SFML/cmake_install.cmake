@@ -1,4 +1,4 @@
-# Install script for directory: /Users/mason/School/cs340/spvs/spvs_cli/SFML/src/SFML
+# Install script for directory: /Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/src/SFML
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,26 +39,26 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/src/SFML/System/cmake_install.cmake")
+  include("/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/src/SFML/System/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/src/SFML/Window/cmake_install.cmake")
+  include("/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/src/SFML/Window/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/src/SFML/Network/cmake_install.cmake")
+  include("/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/src/SFML/Network/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/src/SFML/Graphics/cmake_install.cmake")
+  include("/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/src/SFML/Graphics/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/src/SFML/Audio/cmake_install.cmake")
+  include("/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/src/SFML/Audio/cmake_install.cmake")
 endif()
 
