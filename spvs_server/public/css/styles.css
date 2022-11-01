@@ -27,3 +27,15 @@ body {
 	padding: 70px;
   	border: 1px solid #4CAF50;
 }
+#search_div{
+	width: 300px;
+ 	margin: auto;
+	border: 1px solid #4CAF50;
+	text-align: left;
+}
+.filters{
+	padding-top: 10px;
+}
+.error {
+	border:2px solid red;
+  }
