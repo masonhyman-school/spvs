@@ -1,4 +1,4 @@
-# Install script for directory: /Users/mason/School/cs340/spvs/spvs_cli/SFML/src/SFML/Network
+# Install script for directory: /Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/src/SFML/Network
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib/libsfml-network.3.0.0.dylib"
-    "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib/libsfml-network.3.0.dylib"
+    "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib/libsfml-network.3.0.0.dylib"
+    "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib/libsfml-network.3.0.dylib"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-network.3.0.0.dylib"
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
     if(EXISTS "${file}" AND
        NOT IS_SYMLINK "${file}")
       execute_process(COMMAND /usr/bin/install_name_tool
-        -delete_rpath "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib"
+        -delete_rpath "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib"
         "${file}")
       if(CMAKE_INSTALL_DO_STRIP)
         execute_process(COMMAND "/Library/Developer/CommandLineTools/usr/bin/strip" -x "${file}")
@@ -59,11 +59,11 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib/libsfml-network.dylib")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib/libsfml-network.dylib")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-network.dylib" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-network.dylib")
     execute_process(COMMAND /usr/bin/install_name_tool
-      -delete_rpath "/Users/mason/School/cs340/spvs/spvs_cli/SFML/build/lib"
+      -delete_rpath "/Users/saishmalluri/Desktop/spvs_project/spvs_cli/SFML/build/lib"
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-network.dylib")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/Library/Developer/CommandLineTools/usr/bin/strip" -x "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-network.dylib")

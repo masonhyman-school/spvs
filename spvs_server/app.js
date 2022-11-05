@@ -10,9 +10,11 @@ const bodyParser = require("body-parser");
 const fs = require("fs"); 
 
 const app = express();
+app.use(express.json());
 
 // using modules
-app.use(express.static("public"));
+//app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
 // displays the landing page
@@ -23,13 +25,15 @@ app.get("/", function(req, res) {
 // process the user input: get the port number and return its status
 app.post("/", function(req, res) {
     var portNumber = req.body.userInput;
-    console.log(portNumber);
-    fs.writeFile('../spvs_cli/test.txt', portNumber, err => {
+    console.log(req.body);
+    res.send(portNumber);
+    //TODO: THIS is where output will be piped to a variable and returned
+
+    /*fs.writeFile('../spvs_cli/test.txt', portNumber, err => {
         if (err) {
           console.error(err);
         }
-    });
-    res.sendFile(__dirname + "/results.html");
+    });*/
 });
 
 // server location
