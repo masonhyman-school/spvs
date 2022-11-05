@@ -26,7 +26,7 @@ app.get("/", function(req, res) {
 app.post("/", function(req, res) {
     var portNumber = req.body.userInput;
     console.log(req.body);
-    res.send(portNumber);
+    res.send(req.body);
     //TODO: THIS is where output will be piped to a variable and returned
 
     /*fs.writeFile('../spvs_cli/test.txt', portNumber, err => {
