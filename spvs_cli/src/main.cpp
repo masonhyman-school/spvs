@@ -123,7 +123,10 @@ void SPVS::Scan_Targets() {
 void SPVS::Print_Usage() {	
 	cerr <<  "Usage: spvs [Options] {target specification}" << endl
 		 << "TARGET SPECIFICATION:" << endl
-		 << "    -f <input file name>: Input from list of hosts." << endl;
+		 << "    -f <input file name>: Input from list of hosts." << endl
+		 << "    -p <port range>: Single port or port range specfied start-end." << endl
+		 << "        Ex: spvs -p 10     Scans only port 10." << endl
+		 << "        Ex: spvs -p 10-100 Scans ports 10 through 100." << endl; 
 
 	exit(1);
 }
