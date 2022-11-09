@@ -8,6 +8,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs"); 
+const {execFile, spawn} = require("child_process");
 
 const app = express();
 app.use(express.json());
@@ -24,9 +25,24 @@ app.get("/", function(req, res) {
 
 // process the user input: get the port number and return its status
 app.post("/", function(req, res) {
-    var portNumber = req.body.userInput;
-    console.log(req.body);
-    res.send(req.body);
+    const json = req.body;
+    console.log(json);
+    //const obj = JSON.parse(json);
+    const hostName = json.host_name;
+    const portNumber = json.port_number;
+    // console.log(hostName);
+    // console.log(portNumber);
+
+    if (hostName !== "" && portNumber !== "") {
+        const cp = execFile('../spvs_cli/bin/spvs', [-p, portNumber, hostName], (error, stdout, stderr) => {
+            if (error) {
+                throw error;
+            }
+            res.send(stdout);
+            res.end();
+        });
+    }
+
     //TODO: THIS is where output will be piped to a variable and returned
 
     /*fs.writeFile('../spvs_cli/test.txt', portNumber, err => {
