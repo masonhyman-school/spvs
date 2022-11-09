@@ -503,13 +503,16 @@ void Target::Print_Target(Services * services) {
 	cout << endl << address << " is online." << endl;
 	
 	if (open_ports.size() == 0) {
-		cout << "	No ports found open for host." << endl;
+		cout << "	No ports found open for host." << endl << endl;
 		return;
 	}
 
+	cout << setw(15) << left << "PORT" << setw(15) << "STATUS" << setw(15) << "SERVICE" << endl; 
 	for (int i = 0; i < open_ports.size(); i++) {
-		cout << "	Port " << open_ports.at(i) << " is open running service: " << services->Get_Port_Name(open_ports.at(i)) << endl;
+		cout << setw(15) << left << open_ports.at(i) << setw(15) << "Open" << setw(15) << services->Get_Port_Name(open_ports.at(i)) << endl;
 	}
+
+	cout << endl;
 } 
 
 
