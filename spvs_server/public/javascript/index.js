@@ -16,32 +16,49 @@ $( document ).ready(function() {
     });
 });
 
+
 var send = function() {
+    var $result = $('#results');
+    var userInput = {};
     var host_name = document.getElementById('search').value;
+    userInput['host_name'] = host_name;
     if(document.getElementById('needs_port_scan').checked) {
         if(!error_check_port()) return false;
         var port_number = document.getElementById('portScan').value;
+        userInput['port_number'] = port_number;
     }
+
     //TODO: copy the above line and replace the IDs with their respective checkbox and text input IDs
     loadingSearch("search_div");
     $.ajax({
         url : '/',
         type : 'POST',
-        data : {
-            'host_name' : host_name,
-            'port_number': port_number
-            //TODO: add to the json for new flags here!
-        },
+        data : userInput,
         dataType:'text',
         success : function(data) {        
-            searchBox('search_div');   
-            var returnedData = JSON.parse(data);
+            searchBox('search_div');  
+            //alert(data); 
+            //var returnedData = JSON.parse(data);
             document.getElementById("results").innerHTML = data;
+            // $('#results').append('<p>' + data + '</p>');
         },
         error : function(request,error){
-            alert("nope");
+            searchBox('search_div');
+            document.getElementById("results").innerHTML = "no results found";
+            // alert("nope");
         }
     });
+
+    /*$.ajax({
+        url : '/',
+        type: 'GET',
+        success: function(data) {
+            document.getElementById("results").innerHTML = data;
+        },
+        error: function(request, error) {
+            alert("something wrong");
+        }
+    });*/
  }
 
  function unlock_filter(check_ID, input_ID){
@@ -65,7 +82,7 @@ function error_check_port(){
     }
     for(var i = 1; i < input.value.length; i++){
         // if the char is not a number && the char is not a '-' || the char is a '-' && a '-' has been seen before
-        if(((input.value[i] >= '9' || input.value[i] <= '0') && input.value[i] != '-')  || (input.value[i] == '-' && dash_found == true)){
+        if(((input.value[i] >= '9' || input.value[i] < '0') && input.value[i] != '-')  || (input.value[i] == '-' && dash_found == true)){
             
             //if(dash_found == true) console.log("why?");
             input.setSelectionRange(i, i+1);

@@ -8,13 +8,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs"); 
-const {execFile, spawn} = require("child_process");
+const cp = require("child_process");
 
 const app = express();
 app.use(express.json());
 
-// using modules
-//app.use(express.static("public"));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -23,36 +21,40 @@ app.get("/", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
+app.get('/results.html', function(req, res) {
+    res.sendFile(__dirname + '/results.html');
+})
 // process the user input: get the port number and return its status
 app.post("/", function(req, res) {
+    
     const json = req.body;
-    console.log(json);
-    //const obj = JSON.parse(json);
+    
     const hostName = json.host_name;
     const portNumber = json.port_number;
-    // console.log(hostName);
-    // console.log(portNumber);
+    var count = Object.keys(json).length;
+    console.log(count);
 
-    if (hostName !== "" && portNumber !== "") {
-        const cp = execFile('../spvs_cli/bin/spvs', [-p, portNumber, hostName], (error, stdout, stderr) => {
+    if (count == 1) {
+        const child = cp. execFile('../spvs_cli/bin/spvs', [hostName], {cwd: '../spvs_cli'}, (error, stdout, stderr) => {
             if (error) {
                 throw error;
             }
+            console.log(stdout);
             res.send(stdout);
-            res.end();
+        });
+    } else {
+        const child = cp.execFile('../spvs_cli/bin/spvs', ['-p', portNumber, hostName], {cwd: '../spvs_cli'}, (error, stdout, stderr) => {
+            if (error) {
+                throw error;
+            }
+            console.log(stdout);
+            res.send(stdout);
         });
     }
-
-    //TODO: THIS is where output will be piped to a variable and returned
-
-    /*fs.writeFile('../spvs_cli/test.txt', portNumber, err => {
-        if (err) {
-          console.error(err);
-        }
-    });*/
+    
 });
 
 // server location
-app.listen(5000, function() {
-    console.log("Server is running on port 5000.");
+app.listen(3000, function() {
+    console.log("Server is running on port 3000.");
 });
