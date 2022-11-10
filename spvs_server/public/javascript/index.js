@@ -22,6 +22,15 @@ var send = function() {
     var userInput = {};
     var host_name = document.getElementById('search').value;
     userInput['host_name'] = host_name;
+    document.getElementById("search").className = document.getElementById("search").className.replace(" error", "");
+    document.getElementById("searchError").innerHTML = "";
+    if(host_name.length == 0) {
+        document.getElementById("search").className = document.getElementById("search").className + " error"; 
+        document.getElementById("searchError").innerHTML = "<br>Please enter a hostname<br>";
+        return false;
+    }
+    document.getElementById("portScan").className = document.getElementById("portScan").className.replace(" error", "");
+    document.getElementById("portError").innerHTML = "";
     if(document.getElementById('needs_port_scan').checked) {
         if(!error_check_port()) return false;
         var port_number = document.getElementById('portScan').value;
@@ -46,6 +55,7 @@ var send = function() {
             searchBox('search_div');
             document.getElementById("results").innerHTML = "no results found";
             // alert("nope");
+            document.getElementById("results").innerHTML = "nope";
         }
     });
 
@@ -73,8 +83,9 @@ var send = function() {
 function error_check_port(){
     var input = document.getElementById("portScan");
     var dash_found = false;
-    if(input.value[0] >= '9' || input.value[0] <= '0') {
-        input.setSelectionRange(0, 1);
+    if(input.value[0] >= '9' || input.value[0] <= '0' || input.value[input.value.length-1] >= '9' || input.value[input.value.length-1] <= '0' ) {
+        if(input.value[0] >= '9' || input.value[0] <= '0') input.setSelectionRange(0, 1);
+        else input.setSelectionRange(input.value.length-1, input.value.length);
         input.focus();
         document.getElementById("portScan").className = document.getElementById("portScan").className + " error"; 
         document.getElementById("portError").innerHTML = "Invalid format must match: 1234 or 1234-4567 <br>";
@@ -93,7 +104,8 @@ function error_check_port(){
         }
         if(input.value[i] == '-') dash_found = true;
     }
-    document.getElementById("portScan").className = document.getElementById("portScan").className.replace(" error", "");
-    document.getElementById("portError").innerHTML = "";
+    //document.getElementById("portScan").className = document.getElementById("portScan").className.replace(" error", "");
+    //document.getElementById("portError").innerHTML = "";
     return true;
 }
+
