@@ -99,8 +99,8 @@ int main() {
 	tcp_header->check = 0;
 	tcp_header->urg_ptr = 0;
 
-	psh.source_address = inet_add(source_ip);
-	psh.dest_address = sin.sin_addr.s_addr;
+	psh.source_addr = inet_addr(source_ip);
+	psh.dest_addr = sin.sin_addr.s_addr;
 	psh.placeholder = 0;
 	psh.protocol = IPPROTO_TCP;
 	psh.tcp_length = htons(sizeof(struct tcphdr) + strlen(data));
@@ -114,7 +114,7 @@ int main() {
 	tcp_header->check = Checksum((unsigned short *)pseudogram, psize);
 
 	int one = 1;
-	const int &val = &one;
+	const int *val = &one;
 
 	if (setsockopt (s, IPPROTO_IP, IP_HDRINCL, val, sizeof(one)) < 0) {
 		perror("Error setting IP_HDRINCL");
