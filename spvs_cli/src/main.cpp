@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <cstdlib>
 #include <list>
@@ -77,9 +78,10 @@ SPVS::SPVS(int &argc, char ** argv) {
 	/* Check to see if -p has been specified, if so load port / port range */
 	if (this->input->Arg_Exists("-p")) {
 		this->ports_to_scan = this->input->Get_Ports_To_Scan(this->input->Get_Next_Arg("-p"));		
+		this->services = new Services("references/services");
 	} else {
 		/* No ports specified, populate default */
-		/* TODO */
+		this->services = new Services("references/top_ports", this->ports_to_scan);
 	}
 	
 	/* Treat all words on stdin without '-' or '--' as targets */
@@ -87,12 +89,31 @@ SPVS::SPVS(int &argc, char ** argv) {
 	targets.insert(targets.end(), tmp.begin(), tmp.end());
 
 	/* Once targets have been gathered, identify modifers to default SPVS */
-		
+	Scan_Targets();
+	Print_Targets();			
 
 	/* End timing and print results */
 	auto end = chrono::system_clock::to_time_t(chrono::system_clock::now());
-//	Print_Targets();
-//	Print_Ports();
+	cout << "SPVS complete: " << targets.size() << " hosts scanned in " << difftime(end, start) << " seconds." << endl;
+} 
+
+void SPVS::Scan_Targets() {
+	vector<Target *>::const_iterator t;
+	
+	cout << "Scanning targets..." << endl;
+
+	for (t = targets.begin(); t != targets.end(); t++) {
+		Target * tmp = *t;		
+
+		/* Check if host is online using ICMP */
+		if (!tmp->ICMP_Host_Online(tmp->Get_Address())) {
+			tmp->Set_Online(false);
+			break;
+		} 
+		
+		tmp->Set_Online(true);	
+		tmp->TCP_Scan_Ports(tmp->Get_Address(), ports_to_scan);
+	}	
 }
 
 /*
@@ -102,14 +123,17 @@ SPVS::SPVS(int &argc, char ** argv) {
 void SPVS::Print_Usage() {	
 	cerr <<  "Usage: spvs [Options] {target specification}" << endl
 		 << "TARGET SPECIFICATION:" << endl
-		 << "    -f <input file name>: Input from list of hosts." << endl;
+		 << "    -f <input file name>: Input from list of hosts." << endl
+		 << "    -p <port range>: Single port or port range specfied start-end." << endl
+		 << "        Ex: spvs -p 10     Scans only port 10." << endl
+		 << "        Ex: spvs -p 10-100 Scans ports 10 through 100." << endl; 
 
 	exit(1);
 }
 
 void SPVS::Print_Targets() {
 	for (int i = 0; i < targets.size(); i++) {
-		cout << targets[i]->Get_Address() << endl;
+		targets.at(i)->Print_Target(services);
 	}
 }
 
@@ -126,6 +150,87 @@ void SPVS::Print_Ports() {
 
 
 
+
+
+/* SERVICES CLASS */
+
+/*
+ *	@name Services
+ *	@brief Initializes services from given services file.
+ *	@param[in] file - path to services file.
+ *	@return Initialied services class.
+ */
+
+Services::Services(const string& filename) {
+	string line;
+	fstream file(filename, ios_base::in);
+	
+	if (!file.is_open()) {
+		cerr << "ERROR:	Could not open services reference file." << endl;
+		exit(1);
+	}
+
+	while(getline(file, line)) {
+		string service_name;
+		int port;
+
+		stringstream ss(line);
+		ss >> service_name;
+		ss >> port;
+
+		if (service_name == "#") service_name = "unknown";
+
+		/* Insert port / name pair into services map */
+		service_map.insert(make_pair(port, service_name));
+	}	
+}
+
+/*
+ *	@name Services
+ *	@brief Initializes services from top_ports file.
+ *	@param[in] file - path to top_ports file.
+ *	@param[out] ports_to_scan - reference to vector in SPVS class
+ *	@return Initialized services class.
+ */
+
+Services::Services(const string& filename, vector<int>& ports_to_scan) {
+	string line;
+	fstream file(filename, ios_base::in);
+
+	if (!file.is_open()) {
+		cerr << "ERROR: Could not open top ports reference file." << endl;
+		exit(1);
+	}
+
+	while(getline(file, line)) {
+		string service_name;
+		int port;
+
+		stringstream ss(line);
+		ss >> service_name;
+		ss >> port;
+
+		service_map.insert(make_pair(port, service_name));
+		
+		/* Build ports_to_scan in SPVS class from top ports file */
+		ports_to_scan.push_back(port);
+	}
+}
+
+/*
+ *	@name Get_Port_Name
+ *	@brief Fetches ports name from the service_map
+ *	@param[in] port - port of desired port name
+ * 	@return name of service, 'unknown' if does not exist in map
+ */
+
+string Services::Get_Port_Name(int port) {
+	if (service_map.find(port) != service_map.end()) return service_map[port];
+
+	return "unknown";
+}
+
+
 /* INPUT CLASS */
 
 /*
@@ -135,6 +240,7 @@ void SPVS::Print_Ports() {
  *  @param[in] argv - array of command line arguments.
  *  @return Input class instance.
  */
+
 Input::Input(int &argc, char ** argv) {
 	for (int i = 1; i < argc; i++) {
 		this->args.push_back(string(argv[i]));
@@ -290,7 +396,6 @@ vector<int> Input::Get_Ports_To_Scan(const string& input) {
 
 
 
-
 /* TARGET CLASS */
 
 /*
@@ -383,4 +488,36 @@ void Target::TCP_Print_Open_Ports() {
 
 const string& Target::Get_Address() {
 	return address;
+}
+
+void Target::Set_Online(bool status) {
+	online = status;
+}
+
+void Target::Print_Target(Services * services) {
+	if (!online) {
+		cout << endl << address << " is offline." << endl;
+		return;
+	}
+
+	cout << endl << address << " is online." << endl;
+	
+	if (open_ports.size() == 0) {
+		cout << "	No ports found open for host." << endl << endl;
+		return;
+	}
+
+	cout << setw(15) << left << "PORT" << setw(15) << "STATUS" << setw(15) << "SERVICE" << endl; 
+	for (int i = 0; i < open_ports.size(); i++) {
+		cout << setw(15) << left << open_ports.at(i) << setw(15) << "Open" << setw(15) << services->Get_Port_Name(open_ports.at(i)) << endl;
+	}
+
+	cout << endl;
 } 
+
+
+
+
+
+
+

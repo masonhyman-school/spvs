@@ -23,3 +23,19 @@ body {
 	width: 500px;
 	height: auto;
 }
+#results{
+	padding: 70px;
+  	border: 1px solid #4CAF50;
+}
+#search_div{
+	width: 320px;
+ 	margin: auto;
+	border: 1px solid #4CAF50;
+	text-align: left;
+}
+.filters{
+	padding-top: 10px;
+}
+.error {
+	border:2px solid red;
+  }
