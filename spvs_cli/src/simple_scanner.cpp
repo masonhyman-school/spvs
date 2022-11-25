@@ -87,59 +87,123 @@ void scan(const string& address, vector<int>ports)
 int main(int argc, char ** argv)
 {
     vector<int> ports;
+    vector<string>addresses;
     int port;
     string address;
     bool rangeScan=false;
     string s;
+    string st;
+    string stri;
+    string x;
+    bool defaultScan=false;
     int rangeOne;
     int rangeTwo;
+    bool IPScan=false;
 
-    //Address that is used for scanning
-    cout << "Please enter address: ";
-    getline(cin,address);
+    cout << "Would you like to do a default scan?";
+    cin >> x;
     cout << endl;
 
-    //Asking user for scanning range of ports
-    cout << "Would you like to scan a range of ports?" << endl;
-    cin >> s;
-    cout << endl;
-   
-    if(s=="Yes" || s=="yes")
+    if(x=="Yes" || x=="yes")
     {
-        rangeScan=true;
+        defaultScan=true;
     }
-    
-    //Scanning range of ports
-    if(rangeScan)
+
+    //Default scan: scanning first 100 ports for "localhost" address
+    if(defaultScan)
     {
-        cout << "Please enter a range of ports that you would like to scan (ex: 20 40): ";
-        cin >> rangeOne >> rangeTwo;
-        cout << endl;
-        for(int i=rangeOne; i<=rangeTwo; i++)
+        for(int i=0; i<=100; i++)
         {
             ports.push_back(i);
         }
+
+        scan("localhost",ports);
     }
 
-    //Scanning specified ports
     else
     {
-        cout << "Please enter the ports that you would like to be scanned: " << endl;
+        cout << "Would you like to scan for multiple addresses?" << endl;
+        cin >> st;
+        cout << endl;
 
-        //Getting all the ports that you want to scan
-        while(true)
+        if(st=="Yes" || st=="yes")
         {
-            if(!(cin >> port))
+            IPScan=true;
+        }
+
+        if(IPScan)
+        {
+            //Scanning multiple addresses if user specifies
+            cout << "Please enter the addresses that you would like to use: " << endl;
+
+            //Reading in addresses until user "quits"
+            while(true)
             {
-                break;
+                cin >> stri;
+                if(stri=="q")
+                {
+                    break;
+                }
+
+                addresses.push_back(stri);
             }
-            ports.push_back(port);
+        } 
+
+        else
+        {
+            //Single address that is used for scanning
+            cout << "Please enter address: " << endl;
+            cin >> address;
+            addresses.push_back(address);
+            cout << endl;
+        }
+
+        //Asking user for scanning range of ports
+        cout << "Would you like to scan a range of ports?" << endl;
+        cin >> s;
+        cout << endl;
+    
+        if(s=="Yes" || s=="yes")
+        {
+            rangeScan=true;
+        }
+        
+        //Scanning range of ports
+        if(rangeScan)
+        {
+            cout << "Please enter a range of ports that you would like to scan (ex: 20 40): ";
+            cin >> rangeOne >> rangeTwo;
+            cout << endl;
+            for(int i=rangeOne; i<=rangeTwo; i++)
+            {
+                ports.push_back(i);
+            }
+        }
+
+        //Scanning specified ports
+        else
+        {
+            cout << "Please enter the ports that you would like to be scanned: " << endl;
+
+            //Getting all the ports that you want to scan
+            while(true)
+            {
+                if(!(cin >> port))
+                {
+                    break;
+                }
+                ports.push_back(port);
+            }
+        }
+
+        //Scanning all ports for each address
+        for(int i=0; i<addresses.size(); i++)
+        {
+            scan(addresses[i],ports);
         }
     }
-
-    scan(address,ports);
+    
    
-
     return 0;
 }
 
