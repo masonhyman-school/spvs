@@ -9,19 +9,16 @@ function searchBox(elementID){
     document.getElementById("loading").innerHTML ="";
 }
 
-$( document ).ready(function() {
-    form = document.getElementById('search_form');
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-    });
+let form = document.getElementById('search_form');
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
 });
 
-
 var send = function() {
-    var $result = $('#results');
     var userInput = {};
     var host_name = document.getElementById('search').value;
     userInput['host_name'] = host_name;
+
     document.getElementById("search").className = document.getElementById("search").className.replace(" error", "");
     document.getElementById("searchError").innerHTML = "";
     if(host_name.length == 0) {
@@ -45,33 +42,49 @@ var send = function() {
         data : userInput,
         dataType:'text',
         success : function(data) {        
-            searchBox('search_div');  
-            //alert(data); 
-            //var returnedData = JSON.parse(data);
+            searchBox('search_div');
             document.getElementById("results").innerHTML = data;
-            // $('#results').append('<p>' + data + '</p>');
         },
         error : function(request,error){
             searchBox('search_div');
             document.getElementById("results").innerHTML = "no results found";
-            // alert("nope");
             document.getElementById("results").innerHTML = "nope";
         }
     });
+}
 
-    /*$.ajax({
-        url : '/',
-        type: 'GET',
-        success: function(data) {
-            document.getElementById("results").innerHTML = data;
-        },
-        error: function(request, error) {
-            alert("something wrong");
-        }
-    });*/
- }
+const fuform = document.getElementById('fileUploadForm');
+const fSend = async() => {
+    const myFile = document.getElementById('myFile').files;
+    const formData = new FormData();
 
- function unlock_filter(check_ID, input_ID){
+    Object.keys(myFile).forEach(key => {
+        formData.append(myFile.item(key).name, myFile.item(key));
+    });
+    console.log(formData);
+
+    const response = await fetch('http://localhost:3000/upload', {
+        method: 'POST',
+        body: formData
+    });
+
+    const json = await response.json();
+
+    searchBox('search_div');
+    document.getElementById("results").innerHTML = json;
+    document.getElementById("download-btn").disabled = false;
+
+    console.log(json);
+}
+
+fuform.addEventListener('submit', (e) => {
+    e.preventDefault();
+    fSend();
+});
+
+
+
+function unlock_filter(check_ID, input_ID){
   if (document.getElementById(check_ID).checked) {
       document.getElementById(input_ID).disabled = false;
   } else {
@@ -83,8 +96,8 @@ var send = function() {
 function error_check_port(){
     var input = document.getElementById("portScan");
     var dash_found = false;
-    if(input.value[0] >= '9' || input.value[0] <= '0' || input.value[input.value.length-1] >= '9' || input.value[input.value.length-1] <= '0' ) {
-        if(input.value[0] >= '9' || input.value[0] <= '0') input.setSelectionRange(0, 1);
+    if(input.value[0] >= '9' || input.value[0] < '0' || input.value[input.value.length-1] >= '9' || input.value[input.value.length-1] < '0' ) {
+        if(input.value[0] >= '9' || input.value[0] < '0') input.setSelectionRange(0, 1);
         else input.setSelectionRange(input.value.length-1, input.value.length);
         input.focus();
         document.getElementById("portScan").className = document.getElementById("portScan").className + " error"; 
@@ -108,4 +121,3 @@ function error_check_port(){
     //document.getElementById("portError").innerHTML = "";
     return true;
 }
-
