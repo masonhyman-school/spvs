@@ -44,6 +44,7 @@ var send = function() {
         success : function(data) {        
             searchBox('search_div');
             document.getElementById("results").innerHTML = data;
+            document.getElementById("download-btn").disabled = false;
         },
         error : function(request,error){
             searchBox('search_div');

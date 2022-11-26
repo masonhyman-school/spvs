@@ -23,6 +23,10 @@ app.get("/", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/download", function(req, res) {
+    res.download("output.txt");
+})
+
 // process the user input: get the port number and return its status
 app.post("/", function(req, res) {
     
