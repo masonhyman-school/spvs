@@ -76,7 +76,7 @@ var send = function() {
                         var x = document.createElement("tr");
                         for(var y = 0; y < partsArray.length; y++){
                             var z = document.createElement("th");
-                            z.style.width = "33%";
+                            z.style.width = "500px";
                             z.innerHTML = partsArray[y];
                             x.appendChild(z);
                         }
