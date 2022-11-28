@@ -53,10 +53,41 @@ var send = function() {
 
             const res = JSON.parse(data);
             var i;
+            var is_table = false;
+            var table = document.createElement("table");
             for(key in res){
-                i = document.createElement('p');
-                i.innerText = res[key];
-                results.appendChild(i);
+                var partsArray = res[key].split(' ');
+                if(is_table){
+                    if(partsArray[0] == "SPVS"){
+                        is_table = false; 
+                        results.appendChild(table);
+                    } else {
+                        var x = document.createElement("tr");
+                        for(var y = 0; y < partsArray.length; y++){
+                            var z = document.createElement("td");
+                            z.innerHTML = partsArray[y];
+                            x.appendChild(z);
+                        }
+                        table.appendChild(x);
+                    }
+                }
+                if(!is_table) {
+                    if(partsArray[0] == "PORT"){
+                        var x = document.createElement("tr");
+                        for(var y = 0; y < partsArray.length; y++){
+                            var z = document.createElement("th");
+                            z.style.width = "33%";
+                            z.innerHTML = partsArray[y];
+                            x.appendChild(z);
+                        }
+                        table.appendChild(x);
+                        is_table = true;
+                    } else {
+                        i = document.createElement('p');
+                        i.innerText = res[key];
+                        results.appendChild(i);
+                    }
+                }
             }
             document.getElementById("download-btn").disabled = false;
             document.getElementById("results").style.display = "block";
