@@ -1,12 +1,18 @@
 function loadingSearch(elementID){
     document.getElementById(elementID).style.display = "none";
     document.getElementById(elementID).style.visibility = "hidden";
-    document.getElementById("loading").innerHTML ="<p>Fetching Results...</p>";
+    //document.getElementById("loading").innerHTML ="<p>Fetching Results...</p>";
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("loading").style.visibility = "visible";
+    document.getElementById("results_here").innerHTML ="";
+    document.getElementById("results").style.display = "none";
 }
+
 function searchBox(elementID){
     document.getElementById(elementID).style.display = "block";
     document.getElementById(elementID).style.visibility = "visible";
-    document.getElementById("loading").innerHTML ="";
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("loading").style.visibility = "hidden";
 }
 
 let form = document.getElementById('search_form');
@@ -43,13 +49,21 @@ var send = function() {
         dataType:'text',
         success : function(data) {        
             searchBox('search_div');
-            document.getElementById("results").innerHTML = data;
+            var results = document.getElementById("results_here");
+
+            const res = JSON.parse(data);
+            var i;
+            for(key in res){
+                i = document.createElement('p');
+                i.innerText = res[key];
+                results.appendChild(i);
+            }
             document.getElementById("download-btn").disabled = false;
+            document.getElementById("results").style.display = "block";
         },
         error : function(request,error){
             searchBox('search_div');
-            document.getElementById("results").innerHTML = "no results found";
-            document.getElementById("results").innerHTML = "nope";
+            document.getElementById("results_here").innerHTML = "No results found";
         }
     });
 }
@@ -70,10 +84,21 @@ const fSend = async() => {
     });
 
     const json = await response.json();
-
+    /************************************************************ */
     searchBox('search_div');
-    document.getElementById("results").innerHTML = json;
+    var results = document.getElementById("results_here");
+    const res = JSON.parse(json);
+    var i;
+    for(key in res){
+        i = document.createElement('p');
+        i.innerText = res[key];
+        results.appendChild(i);
+    }
     document.getElementById("download-btn").disabled = false;
+    document.getElementById("results").style.display = "block";
+    //document.getElementById("results").innerHTML = json;
+    //document.getElementById("download-btn").disabled = false;
+    //document.getElementById("download-btn").style.display = "block";
 
     console.log(json);
 }
@@ -122,3 +147,20 @@ function error_check_port(){
     //document.getElementById("portError").innerHTML = "";
     return true;
 }
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const closeButton = document.querySelector(".close-button");
+
+function toggleModal() {
+    modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+    if (event.target === modal) {
+        toggleModal();
+    }
+}
+
+trigger.addEventListener("click", toggleModal);
+trigger.
+window.addEventListener("click", windowOnClick);

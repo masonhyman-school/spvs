@@ -11,19 +11,20 @@ Online HTML, CSS and JavaScript editor to run code online.
     <title>SPVS</title>
   </head>
 
-  <body>
+  <body style="background-color: #50A060; margin:0; padding: 0;">
+    <div style="background-color: white; height: 100%; min-height: 75em; max-width: 66%; margin: auto; padding-top: 0px; margin-top: 0px;">
     
-    <img src = "images/spvs-high-resolution-logo.png" class = "title">
+    <img src = "images/spvs-high-resolution-logo2.png" class = "title">
 
     <p> Our easy to use simple port vulnerablity scanner</p>
 
-    <div id = "search_div">
+    <div id = "search_div" style="padding-top: 50px; text-align: center;">
       
       <form id = "search_form" action="/" method="POST">
-
-        <input id = "search" class="search-box" type="text" name="hostName" placeholder="Enter a hostname">
+        <button class= "trigger" style="width:5%;">?</button>
+        <input id = "search" class="search-box" type="text" name="hostName" placeholder="Enter a hostname" style="width: 70%; height: 1.5em;">
         <button id="one" class="search-button" onclick="send()">scan</button>
-        <span style = "color: red; text-align: center; font-size: small;" id = searchError></span>
+        <span style = "color: red; text-align: center;" id = searchError></span>
         <br>
         
         <div class = "filters">
@@ -31,28 +32,52 @@ Online HTML, CSS and JavaScript editor to run code online.
           <input type="checkbox" id="needs_port_scan" name="needs_port_scan" value="1" onclick = "unlock_filter('needs_port_scan', 'portScan')">
           <label for="needs_port_scan">Port Scan</label>
           <input id = "portScan" name = "portScan" type = "text" style = "margin-left: 10px;" placeholder = "1234 or 1234-4567" disabled><br>
-          <span style = "color: red; text-align: center; font-size: small;" id = portError></span>
+          <span style = "color: red; text-align: center;" id = portError></span>
           <!--TODO: copy and paste the above 3 lines and change name id to create all filters-->
         </div>
 
-        <p style = "text-align: center;"> OR </p>
-
+        <h3 style = "text-align: center; padding: 25px;"> OR </h3>
       </form>
       <div style = "text-align: center;">
         <form id="fileUploadForm" method="POST" enctype="multipart/form-data">
-          <input class="choose_file" type="file" name="upFile" id="myFile"/>
+          <input class="choose_file" type="file" name="upFile" id="myFile" style = "padding-bottom: 20px;";/>
           <button id="two" class="search-button" type="submit">File Upload</button>
         </form>
       </div>
     </div>
-
-    <form action="/download">
-      <button id="download-btn" type="submit" class="search-button" disabled>Download Results</button>
-    </form>
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal()">x</span>
+            <h1 style = "color: #50A060;"><u>Help</u></h1>
+            <h2>Enter a host name</h2>
+            <p>A host, or website, on the Internet is identified by a host name, such as <strong>www.example.com</strong>. Host names are sometimes called domain names. Host names are mapped to IP addresses such as <strong>255.255.255.255</strong>, but a host name and an IP address do not have a one-to-one relationship. To learn more about host names, <a href = "https://www.ibm.com/docs/en/cics-ts/5.3?topic=concepts-host-names" style = "color: #50A060;">click here</a>!
+            <br>
+            
+            <h4>Input formats include:</h4>
+            <ul>
+              <li>domain name - www.example.com</li>
+              <li>IP address - 255.255.255.255</li>
+              <li>localhost (this is your machine!)</li>
+            </ul>
+            </p>
+            <h2>Port Scan</h2>
+            <p>A port is a virtual point where network connections start and end. Ports are software-based and managed by a computer's operating system. Ports are standardized across all network-connected devices, with each port assigned a number. Most ports are reserved for certain protocols — for example, all Hypertext Transfer Protocol (HTTP) messages go to port 80. While IP addresses enable messages to go to and from specific devices, port numbers allow targeting of specific services or applications within those devices. To learn more <a href = "https://www.cloudflare.com/learning/network-layer/what-is-a-computer-port/" style = "color: #50A060;">click here</a>!</p>
+        </div>
+    </div>
     
-    <div id = "loading"></div>
-    <div id = "results"></div>
+    <div id = "loading" style = "display: none">
+      <img src = "images/loading.gif" style="width: 150px; padding-top: 25px;">
+    </div>
+    <div style = "padding-bottom: 30px;"></div>
+    <div id = "results" style = "text-align: center; display: none; margin:auto; width: 70%;">
+      <form action="/download" class = "form-inline">
+        <button id="download-btn" type="submit" style = " margin-left: 40%; background-color: white;" disabled>📥</button>
+        <h1 style = "text-decoration: underline;">Results</h1>
+      </form>
+      <div id = "results_here" style="display: inline-block; text-align: left;"></div>
+    </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src = "javascript/index.js"></script>
+  </div>
   </body>
 </html>
