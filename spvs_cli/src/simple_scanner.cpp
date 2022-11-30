@@ -30,6 +30,11 @@ void scan(const string& address, vector<int>ports)
             cout << "Common port: SSH port" << endl;
         }
 
+        else if(ports[i]==23)
+        {
+            cout << "Common port: Telnet" << endl;
+        }
+
         else if(ports[i]==25)
         {
             cout << "Common port: SMTP port" << endl;
@@ -45,9 +50,29 @@ void scan(const string& address, vector<int>ports)
             cout << "Common port: HTTP port" << endl;
         }
 
+        else if(ports[i]==110)
+        {
+            cout << "Common port: Pop3" << endl;
+        }
+
         else if(ports[i]==123)
         {
             cout << "Common port: NTP port" << endl;
+        }
+
+        else if(ports[i]==137)
+        {
+            cout << "Common port: NetBois port" << endl;
+        }
+
+        else if(ports[i]==143)
+        {
+            cout << "Common port: IMAP port" << endl;
+        }
+
+        else if(ports[i]==161)
+        {
+            cout << "Common port: SNMP" << endl;
         }
 
         else if(ports[i]==179)
@@ -99,7 +124,7 @@ int main(int argc, char ** argv)
     int rangeOne;
     int rangeTwo;
     bool IPScan=false;
-
+    
     cout << "Would you like to do a default scan?";
     cin >> x;
     cout << endl;
