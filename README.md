@@ -26,8 +26,11 @@ SFML - This project uses the SFML library to function. In order to use SPVS, SFM
 6. Without any arguments, SPVS will automatically print the usage.
 
 ### SPVS SERVER
- 
+After installing and running SPVS CLI properly, you can start installing procedure for SPVS SERVER.
 
+1. Install Node.js on your computer, if it is not there already through [here](https://nodejs.org/en/).
+2. After installing Node.js, cd into spvs/spvs_server.
+3. Run addDep.sh.
 
 ## Usage 🛠
 
