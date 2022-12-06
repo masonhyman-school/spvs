@@ -46,8 +46,8 @@ If using the file specification feature, hostnames must be seperated in the file
 Port scanning can be specified by a single port or a range of ports by doing `bin/spvs -p start-end hostname`. It is important to note that flag arguments must come directly after the flag itself.
 
 ### SPVS SERVER
-To run the server, cd into `spvs/spvs_server` directory. It is imperative that you are in this directory for shell script to work.
-Then, run `sh runServer.sh`, and in a browser window type `localhost:3000`.
+To run the server, cd into `spvs/spvs_server` directory. It is imperative that you are in this directory for shell script to work.   
+Then, run `sh runServer.sh`, and in a browser window type `localhost:3000`.   
 Once on the website, you can provide input in one of three ways:
 1. You can enter the hostname and hit scan button.
 2. You can enter the hostname and port number and hit scan button.
