@@ -26,12 +26,12 @@ SFML - This project uses the SFML library to function. In order to use SPVS, SFM
 6. Without any arguments, SPVS will automatically print the usage.
 
 ### SPVS SERVER
-After installing and running SPVS CLI properly, you can start installing procedure for SPVS SERVER.
+After installing and running SPVS CLI properly, you can start procedure for setting up SPVS SERVER.
 
 1. Install Node.js on your computer, if it is not there already download it through [here](https://nodejs.org/en/).
 2. After installing Node.js, cd into `spvs/spvs_server`.
-3. Run `addDep.sh`.
-4. Run the server by typing `node app.js`.
+3. Run `sh addDep.sh`.
+4. Run the server by typing `sh runServer.sh`.
 5. Open a browser, type `localhost:3000`, and the browser should render the website page.
 
 ## Usage 🛠
@@ -42,6 +42,14 @@ In order to access usage of SPVS execute `bin/spvs` from the spvs_cli directory.
 If using the file specification feature, hostnames must be seperated in the file by a space or an return.
 
 Port scanning can be specified by a single port or a range of ports by doing `bin/spvs -p start-end hostname`. It is important to note that flag arguments must come directly after the flag itself.
+
+### SPVS SERVER
+Once on the website, you can provide in one of three ways:
+1. You can enter the hostname and hit scan button.
+2. You can enter the hostname and port number and hit scan button.
+3. You can upload a file containing hostnames separated by spaces or newline and hit file upload.
+
+On doing one of the three things, you will receive an output on the screen, and you will able to download a file containing that output.
 
 ## Licenses 📑
 All license infomation may be found at `spvs/LICENSE.txt`
