@@ -44,7 +44,7 @@ If using the file specification feature, hostnames must be seperated in the file
 Port scanning can be specified by a single port or a range of ports by doing `bin/spvs -p start-end hostname`. It is important to note that flag arguments must come directly after the flag itself.
 
 ### SPVS SERVER
-Once on the website, you can provide in one of three ways:
+Once on the website, you can provide input in one of three ways:
 1. You can enter the hostname and hit scan button.
 2. You can enter the hostname and port number and hit scan button.
 3. You can upload a file containing hostnames separated by spaces or newline and hit file upload.
