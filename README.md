@@ -52,5 +52,5 @@ Once on the website, you can provide input in one of three ways:
 On doing one of the three things, you will receive an output on the screen, and you will able to download a file containing that output.
 
 ## Licenses 📑
-All license infomation may be found at `spvs/LICENSE.txt`
+All license infomation may be found at `spvs/LICENSE.md`
 
