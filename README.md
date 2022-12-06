@@ -1,5 +1,7 @@
 ![](https://raw.githubusercontent.com/masonhyman-school/spvs/main/spvs_server/public/images/spvs-high-resolution-logo2.png?token=GHSAT0AAAAAAB3XYLHGM2Y3DDICSRCCUACSY4HPP7Q)
 
+![SPVS-image](https://github.com/masonhyman-school/spvs/blob/main/spvs_server/public/images/spvs-high-resolution-logo2.png)
+
 # SPVS - Simple Port and Vulnerability Scanner
 
 ## Contributors 👨‍💻
